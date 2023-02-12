@@ -8,183 +8,22 @@
 			      POKEMON XANTHIC
 */
 #include<string.h>
-#include<fstream.h>
-#include<conio.h>
+#include<fstream>
+#include<ncurses.h>
 #include<stdio.h>
-#include<process.h>
-#include<dos.h>
-#include<graphics.h>
+//#include<process>
+//#include<dos>
+//#include<graphics.h>
 #include<time.h>
 #include<stdlib.h>
+#include"Gamer.h"
+
+Move mm[110];
+Pokemon all[49];
+Trainer comp[15];
+
 int toxflg=0;
-class move
-{
-	char name[30];
-	int  type,ID,damage,accuracy,spec,spacc; //spec=special,spacc=special accuracy
-	public:
-	void set(char nm[],int t,int dmg,int acc,int sp,int spa,int id)
-	{
-		ID=id;
-		strcpy(name,nm);
-		type=t;
-		damage=dmg;
-		accuracy=acc;
-		spec=sp;
-		spacc=spa;
-	} //GETTERS
-	char* getname()
-	{	return name;
-	}
-	int getid()
-	{	return ID;
-	}
-	int gettype()
-	{	return type;
-	}
-	int getdam()
-	{	return damage;
-	}
-	int getacc()
-	{	return accuracy;
-	}
-	int getspec()
-	{	return spec;
-	}
-	int getspacc()
-	{	return spacc;
-	}
-}mm[110];
-class pokemon
-{
 
-	char name[20],status[5];
-	int  ID,lvl,currhp,maxhp;
-	int  att,def,speed,type1,type2;
-	public:
-	move M[4];
-
-	pokemon()
-	{
-		strcpy(status,"00000");
-	}
-	void dismove()
-	{
-		cout<<" 1)"<<M[0].getname()<<" 2)"<<M[1].getname()<<" 3)"<<M[2].getname()<<" 4)"<<M[3].getname();
-	}
-	void set(char nm[], int hp, int att1, int def1, int spd1, int idi, int t1,int t2,int a,int b,int c,int d )
-	{
-		lvl=100;
-		strcpy(name,nm);
-		maxhp=hp;
-		currhp=maxhp;
-		att=att1;
-		def=def1;
-		speed=spd1;
-		ID=idi;
-		type1=t1;
-		type2=t2;
-		M[0]=mm[a];
-		M[1]=mm[b];
-		M[2]=mm[c];
-		M[3]=mm[d];
-	}
-	void putname()
-	{
-		cout<<name;
-	}
-	void check()
-	{
-		cout<<ID+1<<' '<<name<<'\t';
-	}
-	void statch(char*aa)    //change stat
-	{
-		strcpy(status,aa);
-	}
-	char* getname()
-	{		return name;
-	}
-	char* getstat()
-	{	return status;
-	}
-	int getid()
-	{	return ID;
-	}
-	int gethp()
-	{	return currhp;
-	}
-	void puthp(int d) //damage passed
-	{	currhp-=d;
-	}
-	int getmax()
-	{	return maxhp;
-	}
-	int getatt()
-	{	return att;
-	}
-	int getdef()
-	{	return def;
-	}
-	int getspd()
-	{	return speed;
-	}
-	int get1()
-	{	return type1;
-	}
-	int get2()
-	{	return type2;
-	}
-	void restore()
-	{
-		currhp=maxhp;
-	}
-}all[49];
-class trainer{
-	protected:
-	char name[30];
-	public:
-	pokemon P[6];
-	void set(char*na,pokemon a,pokemon b,pokemon c,pokemon d,pokemon e,pokemon f)
-	{
-		strcpy(name,na);
-		P[0]=a;P[1]=b;P[2]=c;P[3]=d;P[4]=e;P[5]=f;
-	}
-	void dispoke()
-	{
-			for(int i=0;i<6;i++)
-		{
-			cout<<' '<<i+1<<')'<<P[i].getname()<<'\t';
-		}
-	}
-	void copy(trainer t)
-	{
-		strcpy(name,t.name);
-		P[0]=t.P[0];P[1]=t.P[1];P[2]=t.P[2];P[3]=t.P[3];P[4]=t.P[4];P[5]=t.P[5];
-	}
-	char* getname()
-	{	return name;
-	}
-}comp[15];
-class gamer:public trainer
-{       public:
-	int i,j;          //player co-ordinates
-	int bttled[15];   //array of battles with trainers, 0 is not battled 1 if battled
-	gamer()
-	{       i=50;j=50;
-		for(int i=0;i<15;i++)
-		{
-			bttled[i]=1;
-		}
-
-	}
-	void restore()
-	{
-		for(int u=0;u<6;u++)
-			P[u].restore();
-	}
-	void putname(char r[])
-	{       strcpy(name,r);
-	}
-};
 void charizard() //function to draw charizard sprite
 {
 	cleardevice();
