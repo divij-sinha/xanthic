@@ -28,3 +28,52 @@ void Pokemon::set(char nm[], int hp, int att1, int def1, int spd1, int idi, int 
     M[2]=mm[c];
     M[3]=mm[d];
 }
+void Pokemon::putname()
+{
+    std::cout<<name;
+}
+void Pokemon::check()
+{
+    std::cout<<ID+1<<' '<<name<<'\t';
+}
+void Pokemon::statch(char*aa)    //change stat
+{
+    strcpy(status,aa);
+}
+char* Pokemon::getname()
+{		return name;
+}
+char* Pokemon::getstat()
+{	return status;
+}
+int Pokemon::getid()
+{	return ID;
+}
+int Pokemon::gethp()
+{	return currhp;
+}
+void Pokemon::puthp(int d) //damage passed
+{	currhp-=d;
+}
+int Pokemon::getmax()
+{	return maxhp;
+}
+int Pokemon::getatt()
+{	return att;
+}
+int Pokemon::getdef()
+{	return def;
+}
+int Pokemon::getspd()
+{	return speed;
+}
+int Pokemon::get1()
+{	return type1;
+}
+int Pokemon::get2()
+{	return type2;
+}
+void Pokemon::restore()
+{
+    currhp=maxhp;
+}
