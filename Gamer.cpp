@@ -1,4 +1,4 @@
-#include<Gamer.h>
+#include"Gamer.h"
 #include<string.h>
 
 Gamer::Gamer()
